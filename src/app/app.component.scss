@@ -1,0 +1,35 @@
+div {
+  position: relative;
+  mat-toolbar {
+    height: 15vh;
+    width: 100%;
+    mat-toolbar-row {
+      box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+      svg {
+        padding-top: auto;
+        padding-bottom: auto;
+        margin: 0;
+        fill: white;
+        width: 4.8vh;
+      }
+      span {
+        padding-top: auto;
+        padding-bottom: auto;
+        padding-left: 1vw;
+        font-size: 3vh;
+        color: white;
+      }
+      h1.number {
+        padding-top: auto;
+        padding-bottom: auto;
+        font-size: 2.5vh;
+        margin-left: auto;
+        padding-right: 2vw;
+        color: white;
+      }
+    }
+  }
+  div {
+    position: relative;
+  }
+}

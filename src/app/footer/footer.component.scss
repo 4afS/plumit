@@ -1,0 +1,21 @@
+mat-toolbar {
+  position: bottom;
+  width: 100%;
+  background-color: #424242;
+  mat-toolbar-row {
+      box-shadow: 0 -3px 6px rgba(0,0,0,0.16), 0 -3px 6px rgba(0,0,0,0.23);
+    svg {
+      padding-top: auto;
+      padding-bottom: auto;
+      fill: white;
+      width: 4.8vh;
+    }
+    span {
+      padding-top: auto;
+      padding-bottom: auto;
+      padding-left: 1vw;
+      font-size: 3vh;
+      color: white;
+    }
+  }
+}
