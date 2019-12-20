@@ -9,7 +9,7 @@ import {GetWeightDataService} from 'src/app/get-weight-data.service';
   providers: [GetWeightDataService]
 })
 export class LineChartComponent implements AfterViewInit {
-  constructor(private weight_data: GetWeightDataService) {}
+  constructor(private getWeightData: GetWeightDataService) {}
 
   context: CanvasRenderingContext2D;
 
@@ -21,13 +21,13 @@ export class LineChartComponent implements AfterViewInit {
     this.maincanvas = new Chart(this.context, {
       type: 'line',
       data: {
-        labels: this.weight_data.dates,
+        labels: this.getWeightData.dates,
         datasets: [{
           label: 'Weight',
           cubicInterpolationMode: 'monotone',
           backgroundColor: 'rgba(0,121,107 ,0.5)',
           borderColor: 'rgba(0,121,107 ,1)',
-          data: this.weight_data.weights,
+          data: this.getWeightData.weights,
           fill: true,
         }]
       },
@@ -63,6 +63,6 @@ export class LineChartComponent implements AfterViewInit {
     });
   }
   get number() {
-    return this.weight_data.number_of_visitors;
+    return this.getWeightData.number_of_visitors;
   }
 }
