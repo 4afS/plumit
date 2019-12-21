@@ -1,22 +1,15 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
-class JsonData {
-  numberOfVisitors: number;
-  bodyWeight: BodyWeight[] = [];
-  constructor(n: number, b: BodyWeight[]) {
-    this.numberOfVisitors = n;
-    this.bodyWeight = b;
-  }
+export interface JsonData {
+  number_of_visitors: number;
+  body_weight: Array<BodyWeight>;
 }
 
-class BodyWeight {
+export interface BodyWeight {
   date: string;
   weight: number;
-  constructor(d: string, w: number) {
-    this.date = d;
-    this.weight = w;
-  }
 }
 
 @Injectable({
@@ -24,31 +17,13 @@ class BodyWeight {
 })
 
 export class GetWeightDataService {
-  url = 'http://osakainstituteof.tech/show/';
+  private url = 'https://osakainstituteof.tech/show/';
+  // private url = 'http://localhost:3000/data';
 
-  jsonData: JsonData;
+  constructor(private client: HttpClient) {}
 
-  constructor(private client: HttpClient) {
-    this.client.get(this.url)
-      .subscribe((result: JsonData) => {
-        this.jsonData = result;
-      });
-  }
-
-  get number_of_visitors() {
-    return this.jsonData.numberOfVisitors;
-  }
-
-  get body_weight() {
-    return this.jsonData.bodyWeight;
-  }
-
-  get dates() {
-    return this.jsonData.bodyWeight.map(data => data.date);
-  }
-
-  get weights() {
-    return this.jsonData.bodyWeight.map(date => date.weight);
+  getWeightData(): Observable<JsonData> {
+    return this.client.get<JsonData>(this.url);
   }
 }
 
