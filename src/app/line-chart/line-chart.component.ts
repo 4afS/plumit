@@ -18,9 +18,10 @@ export class LineChartComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.getWeightDataService.getWeightData().subscribe((jsonData: JsonData) => {
-      const weightData: Array<BodyWeight> = jsonData.body_weight;
+      const weightData: BodyWeight[] = jsonData.body_weight;
       const dates = weightData.map(data => data.date);
       const weights = weightData.map(data => data.weight);
+
       this.context = this.weightChart.nativeElement.getContext('2d');
       this.weightChart = new Chart(this.context, {
         type: 'line',
@@ -28,6 +29,11 @@ export class LineChartComponent implements AfterViewInit {
           labels: dates,
           datasets: [{
             label: 'Weight',
+            lineTension: 0,
+            pointRadius: 7,
+            pointBorderColor: 'white',
+            pointBorderWidth: 2,
+            spanGaps: true,
             cubicInterpolationMode: 'monotone',
             backgroundColor: 'rgba(0,121,107 ,0.5)',
             borderColor: 'rgba(0,121,107 ,1)',

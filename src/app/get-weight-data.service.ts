@@ -17,8 +17,8 @@ export interface BodyWeight {
 })
 
 export class GetWeightDataService {
-  private url = 'https://osakainstituteof.tech/show/';
-  // private url = 'http://localhost:3000/data';
+  // private url = 'https://osakainstituteof.tech/show/';
+  private url = 'http://localhost:3000/data';
 
   constructor(private client: HttpClient) {}
 

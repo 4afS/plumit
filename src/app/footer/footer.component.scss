@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Exo:700&display=swap');
 mat-toolbar {
   position: bottom;
   width: 100%;
@@ -7,15 +8,19 @@ mat-toolbar {
     svg {
       padding-top: auto;
       padding-bottom: auto;
+      padding-left: 1.5vw;
       fill: white;
-      width: 4.8vh;
+      width: 4vh;
     }
     span {
       padding-top: auto;
       padding-bottom: auto;
-      padding-left: 1vw;
+      padding-left: 0.7vw;
       font-size: 3vh;
       color: white;
+      font-family: 'Exo', sans-serif;
+      font-style: italic;
+      font-weight: 700;
     }
   }
 }
