@@ -46,7 +46,7 @@ export class WeightChartComponent implements AfterViewInit {
           backgroundColor: 'rgba(0,121,107 ,0.5)',
           borderColor: 'rgba(0,121,107 ,1)',
           data: this.weights,
-          fill: true,
+          fill: true
         }]
       },
       options: {
@@ -58,7 +58,7 @@ export class WeightChartComponent implements AfterViewInit {
         },
         title: {
           fontStyle: 'bold',
-          fontSize: 60
+          fontSize: 100,
         },
         scales: {
           xAxes: [{
@@ -73,7 +73,7 @@ export class WeightChartComponent implements AfterViewInit {
             type: 'linear',
             scaleLabel: {
               labelString: 'Weight',
-              display: false
+              display: false,
             }
           }]
         }
