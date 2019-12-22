@@ -3,12 +3,13 @@ import {Chart} from 'chart.js';
 import {GetWeightDataService, JsonData, BodyWeight} from 'src/app/get-weight-data.service';
 
 @Component({
-  selector: 'app-line-chart',
-  templateUrl: './line-chart.component.html',
-  styleUrls: ['./line-chart.component.scss'],
+  selector: 'app-weight-chart',
+  templateUrl: './weight-chart.component.html',
+  styleUrls: ['./weight-chart.component.scss'],
   providers: [GetWeightDataService]
 })
-export class LineChartComponent implements AfterViewInit {
+
+export class WeightChartComponent implements AfterViewInit {
   constructor(private getWeightDataService: GetWeightDataService) {}
 
   context: CanvasRenderingContext2D;
