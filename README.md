@@ -1,6 +1,6 @@
 # Plumit
 
-This website is for diplaying my friend's weight fluctuation.
+This website is for displaying my friend's weight fluctuation.
 
 ![](https://raw.githubusercontent.com/4afS/pics/master/Plumit_header.png)
 
