@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {GetWeightDataService} from './get-weight-data.service';
+import {Component, OnInit} from '@angular/core';
+import {GetWeightDataService, JsonData} from './get-weight-data.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +8,12 @@ import {GetWeightDataService} from './get-weight-data.service';
   providers: [GetWeightDataService]
 })
 
-export class AppComponent {
-  constructor() {}
+export class AppComponent implements OnInit {
+  constructor(private weightDataService: GetWeightDataService) {}
+
+  ngOnInit() {
+    this.weightDataService.getWeightData().subscribe((jsonData: JsonData) => {
+      this.weightDataService.setJsonData(jsonData);
+    });
+  }
 }

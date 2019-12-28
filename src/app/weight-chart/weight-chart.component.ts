@@ -1,40 +1,42 @@
 import {Component, AfterViewInit, ViewChild} from '@angular/core';
 import {Chart} from 'chart.js';
 import {GetWeightDataService, JsonData, BodyWeight} from 'src/app/get-weight-data.service';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'app-weight-chart',
   templateUrl: './weight-chart.component.html',
-  styleUrls: ['./weight-chart.component.scss'],
-  providers: [GetWeightDataService]
+  styleUrls: ['./weight-chart.component.scss']
 })
 
 export class WeightChartComponent implements AfterViewInit {
-  constructor(private getWeightDataService: GetWeightDataService) {}
+  weightDataSource = new Subject<BodyWeight[]>();
+
+  constructor(private getWeightDataService: GetWeightDataService) {
+    this.getWeightDataService.jsonData$.subscribe((jsonData: JsonData) => {
+      this.weightDataSource.next(jsonData.body_weight);
+    });
+  }
 
   context: CanvasRenderingContext2D;
 
   @ViewChild('weightChart', {static: false})
   weightChart: any;
 
-  dates: string[];
-  weights: number[];
-
   ngAfterViewInit() {
-    this.getWeightDataService.getWeightData().subscribe((jsonData: JsonData) => {
-      const weightData: BodyWeight[] = jsonData.body_weight;
-      this.dates = weightData.map(data => data.date);
-      this.weights = weightData.map(data => data.weight);
+    this.weightDataSource.asObservable().subscribe((weightData: BodyWeight[]) => {
+      const dates = weightData.map(data => data.date);
+      const weights = weightData.map(data => data.weight);
       this.context = this.weightChart.nativeElement.getContext('2d');
-      this.weightChart = this.drawWeightChart();
+      this.weightChart = this.drawWeightChart(dates, weights);
     });
   }
 
-  private drawWeightChart() {
+  private drawWeightChart(dates: string[], weights: number[]) {
     return new Chart(this.context, {
       type: 'line',
       data: {
-        labels: this.dates,
+        labels: dates,
         datasets: [{
           label: 'Weight',
           lineTension: 0,
@@ -45,7 +47,7 @@ export class WeightChartComponent implements AfterViewInit {
           cubicInterpolationMode: 'monotone',
           backgroundColor: 'rgba(0,121,107 ,0.5)',
           borderColor: 'rgba(0,121,107 ,1)',
-          data: this.weights,
+          data: weights,
           fill: true
         }]
       },
